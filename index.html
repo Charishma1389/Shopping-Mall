@@ -3,156 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Mall</title>
-    <!-- Bootstrap CSS -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Metro Mall - Your Premier Shopping Destination</title>
+    <meta name="description" content="Discover over 200 stores and restaurants at Metro Mall. Fashion, electronics, home decor, and more under one roof.">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        /* Base styles */
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* Navbar */
         .navbar {
-            background-color: #0056b3; /* Dark blue */
-        }
-        .navbar .nav-link {
-            color: white; /* White text for links */
-        }
-        .navbar .nav-link:hover {
-            color: #ffcc00; /* Bright yellow on hover */
-        }
-        .card-img-top {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
             width: 100%;
-            height: 200px; /* Set a fixed height */
-            object-fit: cover; /* Ensure the image scales and crops appropriately */
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #7c3aed;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+            }
+        }
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #7c3aed;
+        }
+
+        /* Hero section */
+        .hero {
+            height: 600px;
+            background-image: url('https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero-button {
+            background: #7c3aed;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .hero-button:hover {
+            background: #6d28d9;
+        }
+
+        /* Featured stores */
+        .stores {
+            padding: 4rem 1rem;
+            background: #f9fafb;
+        }
+
+        .stores-container {
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .store-card {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: box-shadow 0.2s;
+        }
+
+        .store-card:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .store-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .store-info {
+            padding: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 3rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1f2937;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="bg-dark text-white py-3 text-center">
-        <h1>Welcome to TRENDSET Mall</h1>
-        <p>Your one-stop destination for shopping, dining, and entertainment!</p>
-    </header>
-
-    <!-- Navigation Bar with Dropdown -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#home">TRENDSET Mall</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                            Services
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#stores">Stores</a></li>
-                            <li><a class="dropdown-item" href="#offers">Offers</a></li>
-                            <li><a class="dropdown-item" href="#events">Events</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i data-lucide="shopping-bag"></i>
+                <span>Metro Mall</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#stores" class="nav-link">Stores</a>
+                <a href="#dining" class="nav-link">Dining</a>
+                <a href="#events" class="nav-link">Events</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <i data-lucide="search"></i>
+                <i data-lucide="user"></i>
+                <i data-lucide="menu" class="md:hidden"></i>
             </div>
         </div>
     </nav>
 
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#home">Home</a></li>
-            <li class="breadcrumb-item"><a href="#shops">Shops</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Featured Shops</li>
-        </ol>
-    </nav>
+    <main>
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Welcome to Metro Mall</h1>
+                    <p class="text-xl mb-8">Your premier shopping destination with over 200 stores and restaurants</p>
+                    <button class="hero-button">Explore Stores</button>
+                </div>
+            </div>
+        </section>
 
-    <!-- Hero Section -->
-    <section class="bg-light py-5 text-center">
-        <div class="container">
-            <h2>Experience the Best</h2>
-            <p class="lead">Find top brands, exclusive offers, and great dining options.</p>
-            <a href="#shops" class="btn btn-primary mt-3">Explore Shops</a>
-        </div>
-    </section>
-
-    <!-- Featured Shops Section -->
-    <section id="shops" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Featured Shops</h2>
-            <div class="row">
-                <!-- Shop 1 -->
-                <div class="col-md-4 col-sm-6 mb-4">
-                    <div class="card">
-                        <img src="https://thumbs.dreamstime.com/b/fashion-shop-window-clothing-store-front-view-womens-woman-mannequin-retail-63352967.jpg">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Fashion Avenue</h5>
-                            <p class="card-text">Discover the latest trends in clothing and accessories.</p>
-                            <a href="https://www.flipkart.com/clothing-and-accessories/fashion-avenue~brand/pr?sid=clo" class="btn btn-primary">Visit Shop</a>
+        <section class="stores" id="stores">
+            <div class="stores-container">
+                <h2 class="text-3xl font-bold text-center">Featured Stores</h2>
+                <div class="stores-grid">
+                    <div class="store-card">
+                        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fashion Hub" class="store-image">
+                        <div class="store-info">
+                            <h3>Fashion Hub</h3>
+                            <p>Fashion</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Shop 2 -->
-                <div class="col-md-4 col-sm-6 mb-4">
-                    <div class="card">
-                        <img src="https://3.bp.blogspot.com/-zka4TWwz3ZM/WjQjLhMVNrI/AAAAAAABT18/tpJM9Owjtwwqc-ZlMlUiBrxL8By3tF55wCLcBGAs/s1600/best-tech-accessories.jpg">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Gadget World</h5>
-                            <p class="card-text">Get the best deals on electronics and gadgets.</p>
-                            <a href="https://www.gadgetworld08.in/?srsltid=AfmBOor1-ZnWErIPoZc6BKZjcjahuqPCmiqCYUnEu8p0qv1PNHkkNNLo" class="btn btn-primary">Visit Shop</a>
+                    <div class="store-card">
+                        <img src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tech World" class="store-image">
+                        <div class="store-info">
+                            <h3>Tech World</h3>
+                            <p>Electronics</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Shop 3 -->
-                <div class="col-md-4 col-sm-12 mb-4">
-                    <div class="card">
-                        <img src="http://images.summitmedia-digital.com/spotph/images/2018/11/28/Top10foodcourt-_640.jpg">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Food Court</h5>
-                            <p class="card-text">Enjoy delicious meals and snacks.</p>
-                            <a href="https://www.paradisefoodcourt.in/" class="btn btn-primary">Explore</a>
+                    <div class="store-card">
+                        <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Home & Living" class="store-image">
+                        <div class="store-info">
+                            <h3>Home & Living</h3>
+                            <p>Home Decor</p>
+                        </div>
+                    </div>
+                    <div class="store-card">
+                        <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Gourmet Market" class="store-image">
+                        <div class="store-info">
+                            <h3>Gourmet Market</h3>
+                            <p>Food</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Contact Section with Form -->
-    <section class="bg-dark text-white py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Contact Us</h2>
-            <form>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Metro Mall</h3>
+                    <p>Your premier shopping destination with the best brands and experiences.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Store Directory</a></li>
+                        <li><a href="#">Mall Map</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <div>
+                        <p><i data-lucide="phone"></i> (555) 123-4567</p>
+                        <p><i data-lucide="mail"></i> info@metromall.com</p>
+                        <p><i data-lucide="map-pin"></i> 123 Shopping Ave, Retail City</p>
                     </div>
-                    <div class="col-md-6">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <i data-lucide="facebook"></i>
+                        <i data-lucide="twitter"></i>
+                        <i data-lucide="instagram"></i>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Metro Mall. All rights reserved.</p>
+            </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-center bg-secondary text-white py-3">
-        <p>&copy; 2025 TRENDSET Mall. All rights reserved.</p>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
     </script>
 </body>
 </html>
